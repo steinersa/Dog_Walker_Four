@@ -174,14 +174,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DemeanorsController.cs" />
+    <Compile Include="Controllers\DogsController.cs" />
+    <Compile Include="Controllers\HealthsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnersController.cs" />
+    <Compile Include="Controllers\WalkDetailsController.cs" />
+    <Compile Include="Controllers\WalkersController.cs" />
+    <Compile Include="Controllers\WalksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904152001503_RolesSetup.cs" />
+    <Compile Include="Migrations\201904152001503_RolesSetup.Designer.cs">
+      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904152016159_ModelsCreated.cs" />
+    <Compile Include="Migrations\201904152016159_ModelsCreated.Designer.cs">
+      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Demeanor.cs" />
+    <Compile Include="Models\Dog.cs" />
+    <Compile Include="Models\Health.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Owner.cs" />
+    <Compile Include="Models\Walk.cs" />
+    <Compile Include="Models\WalkDetails.cs" />
+    <Compile Include="Models\Walker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -244,6 +267,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Demeanors\" />
+    <Folder Include="Views\Dogs\" />
+    <Folder Include="Views\Healths\" />
+    <Folder Include="Views\Owners\" />
+    <Folder Include="Views\WalkDetails\" />
+    <Folder Include="Views\Walkers\" />
+    <Folder Include="Views\Walks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -257,6 +287,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904152001503_RolesSetup.resx">
+      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904152016159_ModelsCreated.resx">
+      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
