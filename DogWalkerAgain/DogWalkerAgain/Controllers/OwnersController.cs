@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,13 @@ namespace DogWalkerAgain.Controllers
 {
     public class OwnersController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Owners
         public ActionResult Index()
         {
-            return View();
+            var owner = db.Owners.ToList();
+            return View(owner);
         }
 
         // GET: Owners/Details/5
@@ -23,23 +28,24 @@ namespace DogWalkerAgain.Controllers
         // GET: Owners/Create
         public ActionResult Create()
         {
-            return View();
+            Owner owner = new Owner();
+            return View(owner);
         }
 
         // POST: Owners/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip")] Owner owner)
         {
-            try
+            owner.ApplicationId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                db.Owners.Add(owner);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(owner);
         }
 
         // GET: Owners/Edit/5

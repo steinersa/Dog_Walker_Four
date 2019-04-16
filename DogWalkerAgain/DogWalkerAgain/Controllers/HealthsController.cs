@@ -1,89 +1,96 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DogWalkerAgain.Controllers
+namespace DogWalker.Controllers
 {
     public class HealthsController : Controller
     {
-        // GET: Healths
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: Dogs
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Healths/Details/5
-        public ActionResult Details(int id)
+        // GET: Dogs/Details/5
+        public ActionResult Details()
         {
+            var userResult = User.Identity.GetUserId();
+            Owner currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            //Dog currentDog = db.Dogs.Where(x => currentUser)
+            //var healthOfDog = db.Health.Where(x => id == x.).FirstOrDefault();
             return View();
         }
 
-        // GET: Healths/Create
+        // GET: Dogs/Create
         public ActionResult Create()
         {
-            return View();
+            Health health = new Health();
+            return View(health);
         }
 
-        // POST: Healths/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,HeartCondition,SeizureCondition,Allergies,Blind,Deaf,PhysicalLimitations,Comments,DogId")] Health health)
         {
-            try
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var currentDog = db.Dogs.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
+            health.DogId = currentDog.Id;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                db.Health.Add(health);
+                db.SaveChanges();
+                return RedirectToAction("Create", "Demeanors");
+            }
 
+            return View(health);
+        }
+
+        // GET: Dogs/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
+        }
+
+        // POST: Dogs/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,HeartCondition,SeizureCondition,Allergies,Blind,Deaf,PhysicalLimitations,Comments,DogId")] Dog dog)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(dog).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(dog);
         }
 
-        // GET: Healths/Edit/5
-        public ActionResult Edit(int id)
+        protected override void Dispose(bool disposing)
         {
-            return View();
-        }
-
-        // POST: Healths/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
+            if (disposing)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Dispose();
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Healths/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Healths/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            base.Dispose(disposing);
         }
     }
 }

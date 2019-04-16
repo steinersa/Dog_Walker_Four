@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,8 @@ namespace DogWalkerAgain.Controllers
 {
     public class DemeanorsController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Demeanors
         public ActionResult Index()
         {
@@ -23,23 +27,27 @@ namespace DogWalkerAgain.Controllers
         // GET: Demeanors/Create
         public ActionResult Create()
         {
-            return View();
+            Demeanor demeanor = new Demeanor();
+            return View(demeanor);
         }
 
         // POST: Demeanors/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "AnimalFriendly,KidFriendly,Comments,DogId")] Demeanor demeanor)
         {
-            try
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var currentDog = db.Dogs.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
+            demeanor.DogId = currentDog.Id;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                db.Demeanor.Add(demeanor);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Dogs");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(demeanor);
         }
 
         // GET: Demeanors/Edit/5

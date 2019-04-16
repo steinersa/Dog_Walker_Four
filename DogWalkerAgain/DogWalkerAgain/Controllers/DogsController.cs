@@ -1,89 +1,130 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DogWalkerAgain.Controllers
+namespace DogWalker.Controllers
 {
     public class DogsController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Dogs
         public ActionResult Index()
         {
-            return View();
+            var userResult = User.Identity.GetUserId();
+            Owner currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var dogList = db.Dogs.Where(x => currentUser.Id == x.OwnerId).ToList();
+            return View(dogList); //pulls list of dogs owned by the owner logged in
         }
 
         // GET: Dogs/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
         }
 
         // GET: Dogs/Create
         public ActionResult Create()
         {
-            return View();
+            Dog dog = new Dog();
+            return View(dog);
         }
 
-        // POST: Dogs/Create
+        // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Rating,Name,Age,Breed,Size,SpayedNeutered,OwnerId")] Dog dog)
         {
-            try
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            dog.OwnerId = currentUser.Id;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                db.Dogs.Add(dog);
+                db.SaveChanges();
+                return RedirectToAction("Create", "Healths");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(dog);
         }
 
         // GET: Dogs/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
         }
 
         // POST: Dogs/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Rating,Name,Age,Breed,Size,SpayedNeutered,OwnerId")] Dog dog)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(dog).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(dog);
         }
 
-        // GET: Dogs/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Customers/Delete/5
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
         }
 
-        // POST: Dogs/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: Customers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Dog dog = db.Dogs.Find(id);
+            db.Dogs.Remove(dog);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return View();
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }
