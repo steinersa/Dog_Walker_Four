@@ -18,11 +18,14 @@ namespace DogWalker.Controllers
         // GET: Walkers
         public ActionResult Index()
         {
+            
+            ApplicationDbContext context = new ApplicationDbContext();
+            
             //ViewBag.map = APIKeys.APIKey;
-            var WalksAvailable = db.Walks.Where(w => w.OwnersApprovalStatus == null).ToList();
 
-            return View(WalksAvailable.ToList());
-                       
+            var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
+            
+            return View(incompleteWalks);
         }
 
         //Search dogs
