@@ -168,7 +168,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -187,9 +186,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+
     <Compile Include="Migrations\201904161449223_NewNewMigration.cs" />
     <Compile Include="Migrations\201904161449223_NewNewMigration.Designer.cs">
+    </Compile>
       <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201904161601218_initial.cs" />
+    <Compile Include="Migrations\201904161601218_initial.Designer.cs">
+      <DependentUpon>201904161601218_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -268,7 +272,6 @@
     <Content Include="Views\Dogs\Index.cshtml" />
     <Content Include="Views\Dogs\Create.cshtml" />
     <Content Include="Views\Dogs\Details.cshtml" />
-    <Content Include="Views\Dogs\Edit.cshtml" />
     <Content Include="Views\Dogs\Delete.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
     <Content Include="Views\Shared\_LayoutOwner.cshtml" />
@@ -276,12 +279,16 @@
     <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Demeanors\Create.cshtml" />
     <Content Include="Views\Healths\Create.cshtml" />
+    <Content Include="Views\Healths\Details.cshtml" />
+    <Content Include="Views\Demeanors\Details.cshtml" />
+    <Content Include="Views\Walks\Create.cshtml" />
+    <Content Include="Views\Walkers\Create.cshtml" />
+    <Content Include="Views\Walkers\IndexDisplay.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\WalkDetails\" />
-    <Folder Include="Views\Walks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -298,8 +305,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904161449223_NewNewMigration.resx">
-      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
     </EmbeddedResource>
+      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904161601218_initial.resx">
+      <DependentUpon>201904161601218_initial.cs</DependentUpon>
+  </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

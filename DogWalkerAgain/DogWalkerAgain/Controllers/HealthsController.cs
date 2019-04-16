@@ -24,10 +24,10 @@ namespace DogWalker.Controllers
         public ActionResult Details()
         {
             var userResult = User.Identity.GetUserId();
-            Owner currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
-            //Dog currentDog = db.Dogs.Where(x => currentUser)
-            //var healthOfDog = db.Health.Where(x => id == x.).FirstOrDefault();
-            return View();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var currentDog = db.Dogs.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
+            var healthInfo = db.Health.Where(x => currentDog.Id == x.DogId).FirstOrDefault();
+            return View(healthInfo);
         }
 
         // GET: Dogs/Create

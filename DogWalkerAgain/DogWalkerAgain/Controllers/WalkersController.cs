@@ -1,17 +1,27 @@
 ﻿using DogWalkerAgain.Models;
+<<<<<<< HEAD
+=======
+using Microsoft.AspNet.Identity;
+>>>>>>> 0fda1c66ef3b9f30f130cfd15c7bf61335064d61
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DogWalkerAgain.Controllers
+namespace DogWalker.Controllers
 {
     public class WalkersController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Walkers
         public ActionResult Index()
         {
+<<<<<<< HEAD
 
 
 
@@ -27,28 +37,46 @@ namespace DogWalkerAgain.Controllers
 
 
 
+=======
+            //ViewBag.map = APIKeys.APIKey;
+            var WalksAvailable = db.Walks.Where(w => w.OwnersApprovalStatus == null).ToList();
+
+            return View(WalksAvailable.ToList());
+                       
+>>>>>>> 0fda1c66ef3b9f30f130cfd15c7bf61335064d61
         }
 
+
         // GET: Walkers/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Walker walker = db.Walkers.Find(id);
+            if (walker == null)
+            {
+                return HttpNotFound();
+            }
+            return View(walker);
         }
 
         // GET: Walkers/Create
         public ActionResult Create()
         {
-            return View();
+            Walker walker = new Walker();
+            return View(walker);
         }
 
         // POST: Walkers/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Walker walker)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Walkers.Add(walker);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -58,19 +86,20 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: Walkers/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            var walkerIs = db.Walkers.Where(w => w.Id == id).FirstOrDefault();
+            return View(walkerIs);
         }
 
         // POST: Walkers/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Walker walker)
         {
             try
             {
-                // TODO: Add update logic here
-
+                db.Entry(walker).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -82,7 +111,8 @@ namespace DogWalkerAgain.Controllers
         // GET: Walkers/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var walkerIs = db.Walkers.Where(w => w.Id == id).FirstOrDefault();
+            return View(walkerIs);
         }
 
         // POST: Walkers/Delete/5
@@ -91,7 +121,9 @@ namespace DogWalkerAgain.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var DeleteWalker = db.Walkers.Where(w => w.Id == id).FirstOrDefault();
+                db.Walkers.Remove(DeleteWalker);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

@@ -26,7 +26,7 @@ namespace DogWalkerAgain.Models
         public Owner Owner { get; set; }
 
         [ForeignKey("Walker")]
-        public int WalkerId { get; set; }
+        public int ? WalkerId { get; set; }
         public Walker Walker { get; set; }
     }
 }

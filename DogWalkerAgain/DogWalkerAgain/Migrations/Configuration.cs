@@ -14,6 +14,14 @@ namespace DogWalkerAgain.Migrations
 
         protected override void Seed(DogWalkerAgain.Models.ApplicationDbContext context)
         {
+            //context.Dogs.AddOrUpdate(d => d.Id, new Models.Dog[] {
+            //    new Models.Dog() {Name = "Charley", Age=4, Breed="Small", Rating=7, Size="Xtra Large", SpayedNeutered=false}
+            //});
+
+            context.Users.AddOrUpdate(u => u.Id, new Models.ApplicationUser[] {
+                new Models.ApplicationUser() { Email="test", UserName="super test" }
+            });
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
