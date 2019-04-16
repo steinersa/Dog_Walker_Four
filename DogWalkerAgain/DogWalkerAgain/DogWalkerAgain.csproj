@@ -168,6 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -277,6 +278,7 @@
     <Content Include="Views\Healths\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
     <Content Include="Views\Walkers\IndexDisplay.cshtml" />
+    <Content Include="Views\Walkers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
