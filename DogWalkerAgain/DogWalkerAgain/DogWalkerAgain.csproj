@@ -267,7 +267,6 @@
     <Content Include="Views\Dogs\Index.cshtml" />
     <Content Include="Views\Dogs\Create.cshtml" />
     <Content Include="Views\Dogs\Details.cshtml" />
-    <Content Include="Views\Dogs\Edit.cshtml" />
     <Content Include="Views\Dogs\Delete.cshtml" />
     <Content Include="Views\Owners\Create.cshtml" />
     <Content Include="Views\Shared\_LayoutOwner.cshtml" />
@@ -275,12 +274,14 @@
     <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Demeanors\Create.cshtml" />
     <Content Include="Views\Healths\Create.cshtml" />
+    <Content Include="Views\Healths\Details.cshtml" />
+    <Content Include="Views\Demeanors\Details.cshtml" />
+    <Content Include="Views\Walks\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\WalkDetails\" />
     <Folder Include="Views\Walkers\" />
-    <Folder Include="Views\Walks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -14,9 +14,6 @@
     <h4>Dog</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Owner.FirstName)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Owner.FirstName)
@@ -73,6 +70,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("View Health Info", "Details", "Healths")  |
+    @Html.ActionLink("View Demeanor Info", "Details", "Demeanors")  |
     @Html.ActionLink("Back to List", "Index")
 </p>

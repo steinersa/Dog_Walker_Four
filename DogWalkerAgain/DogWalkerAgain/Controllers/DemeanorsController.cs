@@ -19,9 +19,13 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: Demeanors/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var currentDog = db.Dogs.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
+            var demeanorInfo = db.Demeanor.Where(x => currentDog.Id == x.DogId).FirstOrDefault();
+            return View(demeanorInfo);
         }
 
         // GET: Demeanors/Create

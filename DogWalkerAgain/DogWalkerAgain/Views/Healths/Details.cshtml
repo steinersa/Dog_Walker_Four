@@ -1,0 +1,82 @@
+﻿@model DogWalkerAgain.Models.Health
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Health</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dog.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dog.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeartCondition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeartCondition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeizureCondition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeizureCondition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Blind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Blind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deaf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deaf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhysicalLimitations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysicalLimitations)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index", "Dogs")
+</p>
