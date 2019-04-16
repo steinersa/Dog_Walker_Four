@@ -7,13 +7,13 @@ namespace DogWalkerAgain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RolesSetup : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RolesSetup));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904152001503_RolesSetup"; }
+            get { return "201904161601218_initial"; }
         }
         
         string IMigrationMetadata.Source

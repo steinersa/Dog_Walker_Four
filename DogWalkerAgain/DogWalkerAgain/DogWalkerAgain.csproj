@@ -186,17 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904152001503_RolesSetup.cs" />
-    <Compile Include="Migrations\201904152001503_RolesSetup.Designer.cs">
-      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904152016159_ModelsCreated.cs" />
-    <Compile Include="Migrations\201904152016159_ModelsCreated.Designer.cs">
-      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904161541143_WalkerIdNullable.cs" />
-    <Compile Include="Migrations\201904161541143_WalkerIdNullable.Designer.cs">
-      <DependentUpon>201904161541143_WalkerIdNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201904161601218_initial.cs" />
+    <Compile Include="Migrations\201904161601218_initial.Designer.cs">
+      <DependentUpon>201904161601218_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -303,14 +295,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904152001503_RolesSetup.resx">
-      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904152016159_ModelsCreated.resx">
-      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904161541143_WalkerIdNullable.resx">
-      <DependentUpon>201904161541143_WalkerIdNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904161601218_initial.resx">
+      <DependentUpon>201904161601218_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
