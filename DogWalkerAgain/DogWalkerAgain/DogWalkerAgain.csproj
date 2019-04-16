@@ -278,10 +278,15 @@
     <Content Include="Views\Demeanors\Details.cshtml" />
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
-    <Content Include="Views\Walkers\Index.cshtml" />
     <Content Include="Views\Walkers\Indexexes.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
     <Content Include="Views\Walkers\Index - Copy.cshtml" />
+    <Content Include="Views\Owners\FilterWalkers.cshtml" />
+    <Content Include="Views\Owners\Filtered.cshtml" />
+    <Content Include="Views\Walks\Delete.cshtml" />
+    <Content Include="Views\Owners\Details.cshtml" />
+    <Content Include="Views\Owners\Delete.cshtml" />
+    <Content Include="Views\Walkers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

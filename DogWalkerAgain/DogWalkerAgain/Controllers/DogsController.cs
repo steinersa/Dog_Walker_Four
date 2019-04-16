@@ -92,7 +92,7 @@ namespace DogWalker.Controllers
             return View(dog);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Dogs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace DogWalker.Controllers
             return View(dog);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Dogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
