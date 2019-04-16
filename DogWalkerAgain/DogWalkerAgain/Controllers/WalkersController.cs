@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -29,13 +30,17 @@ namespace DogWalker.Controllers
         }
 
         //Search dogs
-        public ActionResult DogSearch()
+        public async Task<ActionResult> DogSearch(string searchString)
         {
 
             var dogs = from d in db.Dogs
                        select d;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                dogs = dogs.Where(d => d.Breed.Contains(searchString));
+            }
 
-            return View();
+            return View(await dogs.ToListAsync());
         }
 
 

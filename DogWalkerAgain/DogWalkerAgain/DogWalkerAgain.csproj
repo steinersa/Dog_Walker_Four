@@ -186,7 +186,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-
     <Compile Include="Migrations\201904161449223_NewNewMigration.cs" />
     <Compile Include="Migrations\201904161449223_NewNewMigration.Designer.cs">
       <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
@@ -282,6 +281,7 @@
     <Content Include="Views\Walkers\Index.cshtml" />
     <Content Include="Views\Walkers\Indexexes.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
+    <Content Include="Views\Walkers\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,7 +302,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904161449223_NewNewMigration.resx">
       <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
-  </EmbeddedResource>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
