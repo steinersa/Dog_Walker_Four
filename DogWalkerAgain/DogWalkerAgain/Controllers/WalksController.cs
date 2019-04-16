@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,8 @@ namespace DogWalkerAgain.Controllers
 {
     public class WalksController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Walks
         public ActionResult Index()
         {
@@ -20,26 +24,29 @@ namespace DogWalkerAgain.Controllers
             return View();
         }
 
-        // GET: Walks/Create
+        // GET: Dogs/Create
         public ActionResult Create()
         {
-            return View();
+            Walk walk = new Walk();
+            return View(walk);
         }
 
-        // POST: Walks/Create
+        // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted,OwnerId,WalkerId")] Walk walk)
         {
-            try
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            walk.OwnerId = currentUser.Id;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                db.Walks.Add(walk);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Owners");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(walk);
         }
 
         // GET: Walks/Edit/5
