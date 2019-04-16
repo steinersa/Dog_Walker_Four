@@ -29,6 +29,7 @@ namespace DogWalkerAgain.Models
         public DbSet<Demeanor> Demeanor { get; set; }
         public DbSet<WalkDetails> WalkDetails { get; set; }
         public DbSet<Walk> Walks { get; set; }
+        public object Owner { get; internal set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

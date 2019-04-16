@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,10 +24,18 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: Owners/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            var currentPerson = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            return View(currentUser);
         }
+
+        //var userResult = User.Identity.GetUserId();
+        //var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+        //dog.OwnerId = currentUser.Id;
+
+
 
         // GET: Owners/Create
         public ActionResult Create()
@@ -51,19 +61,20 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: Owners/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
+            return View(ownerIs);
         }
 
         // POST: Owners/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Owner owner)
         {
             try
             {
-                // TODO: Add update logic here
-
+                db.Entry(owner).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -75,7 +86,8 @@ namespace DogWalkerAgain.Controllers
         // GET: Owners/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
+            return View(ownerIs);
         }
 
         // POST: Owners/Delete/5
@@ -84,7 +96,9 @@ namespace DogWalkerAgain.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var DeleteOwner = db.Owners.Where(w => w.Id == id).FirstOrDefault();
+                db.Owners.Remove(DeleteOwner);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

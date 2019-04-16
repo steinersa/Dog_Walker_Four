@@ -186,17 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904152001503_RolesSetup.cs" />
-    <Compile Include="Migrations\201904152001503_RolesSetup.Designer.cs">
-      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904152016159_ModelsCreated.cs" />
-    <Compile Include="Migrations\201904152016159_ModelsCreated.Designer.cs">
-      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904161541143_WalkerIdNullable.cs" />
-    <Compile Include="Migrations\201904161541143_WalkerIdNullable.Designer.cs">
-      <DependentUpon>201904161541143_WalkerIdNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201904161449223_NewNewMigration.cs" />
+    <Compile Include="Migrations\201904161449223_NewNewMigration.Designer.cs">
+      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -234,14 +226,18 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -282,12 +278,14 @@
     <Content Include="Views\Demeanors\Details.cshtml" />
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
-    <Content Include="Views\Walkers\IndexDisplay.cshtml" />
-    <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\Walkers\Indexexes.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
     <Content Include="Views\Owners\FilterWalkers.cshtml" />
     <Content Include="Views\Owners\Filtered.cshtml" />
     <Content Include="Views\Walks\Delete.cshtml" />
+    <Content Include="Views\Owners\Details.cshtml" />
+    <Content Include="Views\Owners\Delete.cshtml" />
+    <Content Include="Views\Walkers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,14 +304,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904152001503_RolesSetup.resx">
-      <DependentUpon>201904152001503_RolesSetup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904152016159_ModelsCreated.resx">
-      <DependentUpon>201904152016159_ModelsCreated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904161541143_WalkerIdNullable.resx">
-      <DependentUpon>201904161541143_WalkerIdNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904161449223_NewNewMigration.resx">
+      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
