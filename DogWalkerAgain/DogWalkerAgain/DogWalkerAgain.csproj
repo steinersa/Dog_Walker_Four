@@ -284,10 +284,10 @@
     <Content Include="Views\Walkers\Create.cshtml" />
     <Content Include="Views\Walkers\IndexDisplay.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\WalkDetails\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -34,7 +34,7 @@ namespace DogWalkerAgain.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted,OwnerId,WalkerId")] Walk walk)
+        public ActionResult Create([Bind(Include = "Id,WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted,OwnerId,WalkerId")] Walk walk)
         {
             var userResult = User.Identity.GetUserId();
             var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
@@ -43,7 +43,7 @@ namespace DogWalkerAgain.Controllers
             {
                 db.Walks.Add(walk);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Owners");
+                return RedirectToAction("Create", "WalkDetails");
             }
 
             return View(walk);
