@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,8 @@ namespace DogWalkerAgain.Controllers
 {
     public class WalkDetailsController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: WalkDetails
         public ActionResult Index()
         {
@@ -23,23 +27,26 @@ namespace DogWalkerAgain.Controllers
         // GET: WalkDetails/Create
         public ActionResult Create()
         {
-            return View();
+            WalkDetails walkDetails = new WalkDetails();
+            return View(walkDetails);
         }
 
-        // POST: WalkDetails/Create
+        // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Date,Time,Distance,NumberOfDogs,WalkId")] WalkDetails walkDetails)
         {
-            try
+            var userResult = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var currentWalk = db.Walks.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
+            walkDetails.WalkId = currentWalk.Id;
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                db.WalkDetails.Add(walkDetails);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Owners");
             }
-            catch
-            {
-                return View();
-            }
+            return View(walkDetails);
         }
 
         // GET: WalkDetails/Edit/5
