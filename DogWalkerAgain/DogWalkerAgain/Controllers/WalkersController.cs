@@ -11,6 +11,7 @@ namespace DogWalkerAgain.Controllers
         // GET: Walkers
         public ActionResult Index()
         {
+            ViewBag.map = APIKeys.APIKey;
             return View();
         }
 
