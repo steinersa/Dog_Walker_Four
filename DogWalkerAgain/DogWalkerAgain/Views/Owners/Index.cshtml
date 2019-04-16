@@ -2,36 +2,24 @@
     Layout = "~/Views/Shared/_LayoutOwner.cshtml";
 }
 
-@model IEnumerable<DogWalkerAgain.Models.Owner>
+@model IEnumerable<DogWalkerAgain.Models.Walk>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexCopy";
 }
 
-<h2>Index</h2>
+<h2>My Walks</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.WalkerApprovalStatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.OwnersApprovalStatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zip)
+            @Html.DisplayNameFor(model => model.WalkComplete)
         </th>
         <th></th>
     </tr>
@@ -40,27 +28,18 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.WalkerApprovalStatus)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.OwnersApprovalStatus)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Street)
+                @Html.DisplayFor(modelItem => item.WalkComplete)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zip)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                @Html.ActionLink("Delete", "Delete", "Walks", new { id = item.Id })
             </td>
         </tr>
     }

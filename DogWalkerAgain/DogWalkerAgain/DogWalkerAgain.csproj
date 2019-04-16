@@ -285,6 +285,9 @@
     <Content Include="Views\Walkers\IndexDisplay.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
+    <Content Include="Views\Owners\FilterWalkers.cshtml" />
+    <Content Include="Views\Owners\Filtered.cshtml" />
+    <Content Include="Views\Walks\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
