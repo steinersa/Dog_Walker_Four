@@ -1,48 +1,12 @@
-<<<<<<< HEAD
-﻿
-@model IEnumerable<DogWalkerAgain.Models.Walk>
-=======
-﻿@model List<DogWalkerAgain.Models.Walk>
->>>>>>> 73607cf0cfe9fa0bd21c6c4e1fb168f866164248
+﻿@model IEnumerable<DogWalkerAgain.Models.Walk>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<h2>Index</h2>
 
-<<<<<<< HEAD
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner.LastName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.LastName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-=======
 <!DOCTYPE html>
 
 <html>
@@ -67,13 +31,13 @@
     </div>
 
     <script>
-    //function initMap() {
-    //    var location = { lat: 43.03, lng: -87.906 };
-    //    var map = new google.maps.Map(document.getElementById("map"), {
-    //        zoom: 4,
-    //        mapTypeId: google.maps.mapTypeId.hybrid,
-    //        center: location
-    //    });
+        //function initMap() {
+        //    var location = { lat: 43.03, lng: -87.906 };
+        //    var map = new google.maps.Map(document.getElementById("map"), {
+        //        zoom: 4,
+        //        mapTypeId: google.maps.mapTypeId.hybrid,
+        //        center: location
+        //    });
         //var marker = new google.maps.Marker({
 
         //})
@@ -96,10 +60,10 @@
 
             map = new google.maps.Map(map_document, map_options);
 
-        
+
         }
 
         google.maps.event.addDomListener(window, 'load', initMap);
->>>>>>> 73607cf0cfe9fa0bd21c6c4e1fb168f866164248
 
-</table>
+
+
