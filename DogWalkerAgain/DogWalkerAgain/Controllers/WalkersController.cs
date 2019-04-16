@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DogWalkerAgain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,21 @@ namespace DogWalkerAgain.Controllers
         // GET: Walkers
         public ActionResult Index()
         {
+
+
+
+            
+            ApplicationDbContext context = new ApplicationDbContext();
+            
             ViewBag.map = APIKeys.APIKey;
-            return View();
+
+            var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
+            
+            return View(incompleteWalks);
+
+
+
+
         }
 
         // GET: Walkers/Details/5
