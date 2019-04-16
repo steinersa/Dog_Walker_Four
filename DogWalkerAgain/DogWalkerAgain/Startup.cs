@@ -30,7 +30,7 @@ namespace DogWalkerAgain
             if (!roleManager.RoleExists("Walker"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Owner";
+                role.Name = "Walker";
                 roleManager.Create(role);
             }
         }

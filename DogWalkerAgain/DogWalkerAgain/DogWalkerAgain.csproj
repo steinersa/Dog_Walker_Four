@@ -275,11 +275,12 @@
     <Content Include="Views\Owners\Index.cshtml" />
     <Content Include="Views\Demeanors\Create.cshtml" />
     <Content Include="Views\Healths\Create.cshtml" />
+    <Content Include="Views\Walkers\Create.cshtml" />
+    <Content Include="Views\Walkers\IndexDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\WalkDetails\" />
-    <Folder Include="Views\Walkers\" />
     <Folder Include="Views\Walks\" />
   </ItemGroup>
   <ItemGroup>
