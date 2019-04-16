@@ -17,8 +17,10 @@ namespace DogWalkerAgain.Controllers
         // GET: Owners
         public ActionResult Index()
         {
-            var owner = db.Owners.ToList();
-            return View(owner);
+            var userResult = User.Identity.GetUserId();
+            var currentOwner = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var walkList = db.Walks.Where(x => currentOwner.Id == x.OwnerId).ToList();
+            return View(walkList);
         }
 
         // GET: Owners/Details/5
@@ -104,6 +106,17 @@ namespace DogWalkerAgain.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Filter()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Filter(string choice)
+        {
+            return View();
         }
     }
 }
