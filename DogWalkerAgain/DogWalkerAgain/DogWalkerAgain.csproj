@@ -274,8 +274,8 @@
     <Content Include="Views\Demeanors\Details.cshtml" />
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
-    <Content Include="Views\Walkers\IndexDisplay.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\Walkers\Indexexes.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

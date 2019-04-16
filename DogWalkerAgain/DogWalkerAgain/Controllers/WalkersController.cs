@@ -25,6 +25,16 @@ namespace DogWalker.Controllers
                        
         }
 
+        //Search dogs
+        public ActionResult DogSearch()
+        {
+
+            var dogs = from d in db.Dogs
+                       select d;
+
+            return View();
+        }
+
 
         // GET: Walkers/Details/5
         public ActionResult Details(string id)
