@@ -80,18 +80,11 @@ namespace DogWalker.Controllers
 
 
         // GET: Walkers/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Walker walker = db.Walkers.Find(id);
-            if (walker == null)
-            {
-                return HttpNotFound();
-            }
-            return View(walker);
+            var currentPerson = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            return View(currentUser);
         }
 
         // GET: Walkers/Create
