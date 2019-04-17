@@ -62,6 +62,22 @@ namespace DogWalker.Controllers
             return View(dogBreedViewModel);
         }
 
+        //GET: Details of dog picked
+        public ActionResult DogDetails(int id)
+        {
+            if(id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
+        }
+
 
         // GET: Walkers/Details/5
         public ActionResult Details(string id)
