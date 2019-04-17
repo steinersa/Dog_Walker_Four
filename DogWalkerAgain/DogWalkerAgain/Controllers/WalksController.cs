@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,7 +23,8 @@ namespace DogWalkerAgain.Controllers
         // GET: Walks/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Walk walk = db.Walks.Where(s => s.Id.Equals(id)).FirstOrDefault();
+            return View(walk);
         }
 
         // GET: Walks/Create
@@ -53,23 +55,22 @@ namespace DogWalkerAgain.Controllers
         // GET: Walks/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var walk = db.Walks.Where(x => x.Id == id).FirstOrDefault();
+            return View(walk);
         }
 
         // POST: Walks/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted")] Walk walk)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Entry(walk).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Owners");
             }
-            catch
-            {
-                return View();
-            }
+            return View(walk);
         }
 
         // GET: Walks/Delete/5
