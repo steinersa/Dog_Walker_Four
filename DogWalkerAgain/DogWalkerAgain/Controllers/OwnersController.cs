@@ -63,10 +63,6 @@ namespace DogWalkerAgain.Controllers
             var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
             return View(ownerIs);
 
-            //var currentPerson = User.Identity.GetUserId();
-            //var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
-            //return View(currentUser);
-
         }
 
         // POST: Owners/Edit/5
@@ -84,28 +80,7 @@ namespace DogWalkerAgain.Controllers
                 return View(owner);
             
         }
-        //{
-        //    var ownerInDB = db.Owners.Single(m => m.Id == owner.Id);
-        //    ownerInDB.FirstName = owner.FirstName;
-        //    ownerInDB.LastName = owner.LastName;
-        //    ownerInDB.Street = owner.Street;
-        //    ownerInDB.City = owner.City;
-        //    ownerInDB.State = owner.State;
-        //    ownerInDB.Zip = owner.Zip;
-        //    //ownerInDB.Id = owner.Id;
-        //    ownerInDB.Owners = db.Owners.ToList();
-        //    db.SaveChanges();
-        //    return View(owner);
-        //}
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(owner).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(owner);
-        //}
+
 
         // GET: Owners/Delete/5
         public ActionResult Delete(int id)
