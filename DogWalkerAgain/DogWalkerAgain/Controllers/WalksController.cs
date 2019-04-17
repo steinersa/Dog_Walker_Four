@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,7 +25,7 @@ namespace DogWalkerAgain.Controllers
             return View();
         }
 
-        // GET: Dogs/Create
+        // GET: Walks/Create
         public ActionResult Create()
         {
             Walk walk = new Walk();
@@ -72,25 +73,29 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: Walks/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Walk walk = db.Walks.Find(id);
+            if (walk == null)
+            {
+                return HttpNotFound();
+            }
+            return View(walk);
         }
 
         // POST: Walks/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Walk walk = db.Walks.Find(id);
+            db.Walks.Remove(walk);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Owners");
         }
     }
 }
