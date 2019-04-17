@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,9 +21,18 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: WalkDetails/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WalkDetails walkDetails = db.WalkDetails.Find(id);
+            if (walkDetails == null)
+            {
+                return HttpNotFound();
+            }
+            return View(walkDetails);
         }
 
         // GET: WalkDetails/Create
@@ -50,25 +61,32 @@ namespace DogWalkerAgain.Controllers
         }
 
         // GET: WalkDetails/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WalkDetails walkDetails = db.WalkDetails.Find(id);
+            if (walkDetails == null)
+            {
+                return HttpNotFound();
+            }
+            return View(walkDetails);
         }
 
         // POST: WalkDetails/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Date,Time,Distance,NumberOfDogs,WalkId")] WalkDetails walkDetails)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Entry(walkDetails).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Owners");
             }
-            catch
-            {
-                return View();
-            }
+            return View(walkDetails);
         }
 
         // GET: WalkDetails/Delete/5

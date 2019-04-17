@@ -282,10 +282,12 @@
     <Content Include="Views\WalkDetails\Create.cshtml" />
     <Content Include="Views\Owners\FilterWalkers.cshtml" />
     <Content Include="Views\Owners\Filtered.cshtml" />
-    <Content Include="Views\Walks\Delete.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Details.cshtml" />
+    <Content Include="Views\Walks\Details.cshtml" />
+    <Content Include="Views\Walks\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
