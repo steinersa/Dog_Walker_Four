@@ -231,6 +231,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\paw.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -284,7 +285,6 @@
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
-    <Content Include="Views\Walkers\Index - Copy.cshtml" />
     <Content Include="Views\Owners\FilterWalkers.cshtml" />
     <Content Include="Views\Owners\Filtered.cshtml" />
     <Content Include="Views\Walks\Delete.cshtml" />

@@ -15,26 +15,50 @@
         #map {
             height: 500px;
             width: 100%;
+            background-color: grey;
         }
+
+        
+        
     </style>
 </head>
 <body>
+    
     <div id="map">
 
     </div>
 
 
+
     <script>
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
+            var icon = {
+                url: '../../Content/paw.jpg',
+                scaledSize: new google.maps.Size(50, 50)
+            }
             var map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 10,
                 center: location
             });
+            var marker = new google.maps.Marker({
+                position: location,
+                animation: google.maps.Animation.BOUNCE,
+                map: map,
+                icon: icon
+            });
+            console.log('marker', marker);
+            setMarkers(map);
+        }
+
+        function setMarkers(map) {
+            var image = {
+                url: 'https://www.google.com/search?q=dog+paw+png+icon&rlz=1C1CHBF_enUS838US838&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjjgaiRsdfhAhUlTd8KHcnCDk4Q_AUIDigB&biw=1920&bih=937#imgrc=jvYQgLGgMPEeJM:'
+            };
         }
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq9yWQgHQ6SnQO-orynI3aFu9GYnXEPo&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
 
 
 </body>
