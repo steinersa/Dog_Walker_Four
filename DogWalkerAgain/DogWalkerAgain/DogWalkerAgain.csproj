@@ -168,7 +168,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -187,15 +186,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904161449223_NewNewMigration.cs" />
-    <Compile Include="Migrations\201904161449223_NewNewMigration.Designer.cs">
-      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904162024472_DogMigration.cs" />
-    <Compile Include="Migrations\201904162024472_DogMigration.Designer.cs">
-      <DependentUpon>201904162024472_DogMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Demeanor.cs" />
     <Compile Include="Models\Dog.cs" />
@@ -287,11 +277,16 @@
     <Content Include="Views\WalkDetails\Create.cshtml" />
     <Content Include="Views\Owners\FilterWalkers.cshtml" />
     <Content Include="Views\Owners\Filtered.cshtml" />
-    <Content Include="Views\Walks\Delete.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\Owners\Edit.cshtml" />
+    <Content Include="Views\WalkDetails\Details.cshtml" />
+    <Content Include="Views\Walks\Details.cshtml" />
+    <Content Include="Views\Walks\Edit.cshtml" />
+    <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
+    <Content Include="Views\Walkers\DogDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,14 +303,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904161449223_NewNewMigration.resx">
-      <DependentUpon>201904161449223_NewNewMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904162024472_DogMigration.resx">
-      <DependentUpon>201904162024472_DogMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

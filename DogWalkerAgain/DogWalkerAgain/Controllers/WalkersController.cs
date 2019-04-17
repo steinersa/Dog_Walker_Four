@@ -32,17 +32,50 @@ namespace DogWalker.Controllers
         }
 
         //Search dogs
-        public async Task<ActionResult> DogSearch(string searchString)
+        public async Task<ActionResult> DogSearch(string dogBreed, string searchString)
         {
+            //use LINQ to get list of dog breeds.
+            IQueryable<string> BreedGet = from d in db.Dogs
+                                          orderby d.Breed
+                                          select d.Breed;
 
             var dogs = from d in db.Dogs
                        select d;
+
+
             if (!string.IsNullOrEmpty(searchString))
             {
-                dogs = dogs.Where(d => d.Breed.Contains(searchString));
+                dogs = dogs.Where(d => d.Name.Contains(searchString));
             }
 
-            return View(await dogs.ToListAsync());
+            if (!string.IsNullOrEmpty(dogBreed))
+            {
+                dogs = dogs.Where(d => d.Breed == dogBreed);
+            }
+
+            var dogBreedViewModel = new DogBreedViewModel
+            {
+                Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
+                Dogs = await dogs.ToListAsync()
+            };
+
+            return View(dogBreedViewModel);
+        }
+
+        //GET: Details of dog picked
+        public ActionResult DogDetails(int id)
+        {
+            if(id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
         }
 
 

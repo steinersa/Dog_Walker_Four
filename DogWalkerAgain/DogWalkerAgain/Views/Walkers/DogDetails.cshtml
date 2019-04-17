@@ -1,0 +1,75 @@
+﻿@model DogWalkerAgain.Models.Dog
+
+@{
+    ViewBag.Title = "DogDetails";
+}
+
+<h2>DogDetails</h2>
+
+<div>
+    <h4>Dog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpayedNeutered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpayedNeutered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("View Health Info", "Details", "Healths")  |
+    @Html.ActionLink("View Demeanor Info", "Details", "Demeanors")  |
+    @Html.ActionLink("Back to List", "DogSearch")
+</p>
