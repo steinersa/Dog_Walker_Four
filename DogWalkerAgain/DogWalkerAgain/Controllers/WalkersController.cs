@@ -1,4 +1,6 @@
-﻿using DogWalkerAgain.Models;
+﻿using DogWalker
+    ;
+using DogWalkerAgain.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -21,12 +23,12 @@ namespace DogWalker.Controllers
         {
             
             ApplicationDbContext context = new ApplicationDbContext();
-            
+
             //ViewBag.map = APIKeys.APIKey;
 
             var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
             
-            return View(incompleteWalks);
+            return View();
         }
 
         //Search dogs
