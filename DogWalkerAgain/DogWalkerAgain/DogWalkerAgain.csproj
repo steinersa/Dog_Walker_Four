@@ -274,10 +274,17 @@
     <Content Include="Views\WalkDetails\Details.cshtml" />
     <Content Include="Views\Walks\Details.cshtml" />
     <Content Include="Views\Walks\Edit.cshtml" />
-    <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
     <Content Include="Views\Walkers\DogDetails.cshtml" />
     <Content Include="Views\Walkers\Details.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Walkers\DogSearch.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
