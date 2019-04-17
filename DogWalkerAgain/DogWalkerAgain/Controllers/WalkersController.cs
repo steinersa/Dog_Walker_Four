@@ -1,10 +1,13 @@
-﻿using DogWalkerAgain.Models;
+﻿using DogWalker
+    ;
+using DogWalkerAgain.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,22 +23,43 @@ namespace DogWalker.Controllers
         {
             
             ApplicationDbContext context = new ApplicationDbContext();
-            
+
             //ViewBag.map = APIKeys.APIKey;
 
             var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
             
-            return View(incompleteWalks);
+            return View();
         }
 
         //Search dogs
-        public ActionResult DogSearch()
+        public async Task<ActionResult> DogSearch(string dogBreed, string searchString)
         {
+            //use LINQ to get list of dog breeds.
+            IQueryable<string> BreedGet = from d in db.Dogs
+                                          orderby d.Breed
+                                          select d.Breed;
 
             var dogs = from d in db.Dogs
                        select d;
 
-            return View();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                dogs = dogs.Where(d => d.Name.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(dogBreed))
+            {
+                dogs = dogs.Where(d => d.Breed == dogBreed);
+            }
+
+            var dogBreedViewModel = new DogBreedViewModel
+            {
+                Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
+                Dogs = await dogs.ToListAsync()
+            };
+
+            return View(dogBreedViewModel);
         }
 
 

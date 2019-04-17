@@ -4,9 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace DogWalkerAgain.Models
 {
+
+    public class DogBreedViewModel
+    {
+        public List<Dog> Dogs;
+        public SelectList Breeds;
+        public string DogBreed { get; set; }
+        public string SearchString { get; set; }
+    }
     public class Dog
     {
         [Key]

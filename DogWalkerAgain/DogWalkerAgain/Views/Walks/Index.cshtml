@@ -1,10 +1,15 @@
-﻿@model DogWalkerAgain.Models.Walker
+﻿@model DogWalkerAgain.Models.Dog
+
+@{
+    ViewBag.Title = "Index";
+}
+
 
 
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title></title>
     <style>
         * {
@@ -28,13 +33,13 @@
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
             var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 4,
                 center: location
             });
         }
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq9yWQgHQ6SnQO-orynI3aFu9GYnXEPo&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/js?key=&callback=initMap"></script>
 
 
 </body>

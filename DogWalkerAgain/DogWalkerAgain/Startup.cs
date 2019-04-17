@@ -22,14 +22,14 @@ namespace DogWalkerAgain
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             if (!roleManager.RoleExists("Owner"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Owner";
                 roleManager.Create(role);
 
             }
             if (!roleManager.RoleExists("Walker"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Walker";
                 roleManager.Create(role);
             }
