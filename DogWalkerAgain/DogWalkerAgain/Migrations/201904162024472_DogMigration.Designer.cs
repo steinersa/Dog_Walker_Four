@@ -7,14 +7,15 @@ namespace DogWalkerAgain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NewNewMigration : IMigrationMetadata
+    public sealed partial class DogMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NewNewMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DogMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904161449223_NewNewMigration"; }
+            get { return "201904162024472_DogMigration"; }
         }
+        
         string IMigrationMetadata.Source
         {
             get { return null; }

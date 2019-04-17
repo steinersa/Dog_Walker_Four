@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+@model DogWalkerAgain.Models.WalkDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WalkDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Walk.WalkerApprovalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Walk.WalkerApprovalStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfDogs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfDogs)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("View Route", "Map")  |
+    @Html.ActionLink("Back to List", "Index", "Owners")
+</p>
