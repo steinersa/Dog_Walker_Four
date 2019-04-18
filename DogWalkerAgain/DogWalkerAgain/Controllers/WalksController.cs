@@ -57,20 +57,63 @@ namespace DogWalkerAgain.Controllers
         public ActionResult Edit(int id)
         {
             var walk = db.Walks.Where(x => x.Id == id).FirstOrDefault();
+
+            var appId = User.Identity.GetUserId();
+            string role = db.Users.Where(x => appId == x.Id).Select(x => x.UserRole).SingleOrDefault();
+
+            if (role == "Owner")
+            {
+                return View("OwnerEdit", walk);
+            }
+
+            if (role == "Walker")
+            {
+                return View("WalkerEdit", walk);
+            }
+
             return View(walk);
         }
 
         // POST: Walks/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnersApprovalStatus,WalkComplete")] Walk walk)
+        public ActionResult OwnerEdit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnersApprovalStatus,WalkComplete,WalkerId")] Walk walk)
         {
+            // owner // if OwnersApprovalStatus is approved // save changes like normal // if OwnersApprovalStatus is denied // set WalkerApproval status to null && WalkerId to null // else save changes
+            if (walk.OwnersApprovalStatus == "denied")
+            {
+                walk.WalkerApprovalStatus = null;
+                walk.WalkerId = null;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(walk).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Owners");
             }
+
+            return View(walk);
+        }
+
+        // POST: Walks/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult WalkerEdit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnersApprovalStatus,WalkComplete,WalkerId")] Walk walk)
+        {
+            // walker // if WalkerApproval Status is interested // find user currently loggged in and set to WalkerId
+            if (walk.WalkerApprovalStatus == "interested")
+            {
+                var userResult = User.Identity.GetUserId();
+                var currentUser = db.Walkers.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+                walk.WalkerId = currentUser.Id;
+            }
+            if (ModelState.IsValid)
+            {
+                db.Entry(walk).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Walkers");
+            }
+
             return View(walk);
         }
 

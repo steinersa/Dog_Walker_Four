@@ -22,13 +22,13 @@ namespace DogWalker.Controllers
         public ActionResult Index()
         {
             
-            ApplicationDbContext context = new ApplicationDbContext();
-
-            //ViewBag.map = APIKeys.APIKey;
-
-            var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
+            var incompleteWalks = db.Walks.Include(w => w.Owner.Street)
+                .Include(w => w.Owner.State)
+                .Include(w => w.Owner.Zip)
+                .Include(w => w.Owner.City)
+                .Where(x => x.WalkComplete == false).ToList();
             
-            return View();
+            return View(incompleteWalks);
         }
 
         //Search dogs
@@ -82,7 +82,7 @@ namespace DogWalker.Controllers
         public ActionResult Details()
         {
             var currentPerson = User.Identity.GetUserId();
-            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            var currentUser = db.Walkers.Where(x => x.ApplicationId == currentPerson).FirstOrDefault();
             return View(currentUser);
         }
 
@@ -95,18 +95,18 @@ namespace DogWalker.Controllers
 
         // POST: Walkers/Create
         [HttpPost]
-        public ActionResult Create(Walker walker)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip,Rating")] Walker walker)
         {
-            try
+            walker.ApplicationId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
             {
                 db.Walkers.Add(walker);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(walker);
         }
 
         // GET: Walkers/Edit/5
@@ -156,5 +156,12 @@ namespace DogWalker.Controllers
                 return View();
             }
         }
+
+        public ActionResult WalkOpportunities()
+        {
+            var walkOpportunities = db.Walks.Where(x => x.WalkComplete == false && x.OwnersApprovalStatus != "approved" && x.WalkerApprovalStatus != "interested").ToList();
+            return View(walkOpportunities);
+        }
+
     }
 }

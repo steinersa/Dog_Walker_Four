@@ -1144,10 +1144,11 @@ img {
   border-radius: 50%;
 }
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eee;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+    background-color: #9EDF8F;
 }
 .sr-only {
   position: absolute;
@@ -4493,8 +4494,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
-  border-color: #e7e7e7;
+    background-color: #9EDF8F;
+    border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
   color: #777;
@@ -4956,11 +4957,11 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
-  color: inherit;
-  background-color: #eee;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: #000;
+    background-color: #9edf8f;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4971,14 +4972,15 @@ a.badge:focus {
   font-size: 21px;
   font-weight: 200;
 }
-.jumbotron > hr {
-  border-top-color: #d5d5d5;
-}
+    .jumbotron > hr {
+        background-color: #9EDF8F;
+    }
 .container .jumbotron,
 .container-fluid .jumbotron {
-  padding-right: 15px;
-  padding-left: 15px;
-  border-radius: 6px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px;
+    background-color: #9EDF8F;
 }
 .jumbotron .container {
   max-width: 100%;
@@ -5903,16 +5905,16 @@ button.close {
   margin: 10px;
 }
 .modal-content {
-  position: relative;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-          background-clip: padding-box;
-  border: 1px solid #999;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 6px;
-  outline: 0;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    position: relative;
+    background-color: #9edf8f;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
 .modal-backdrop {
   position: fixed;
