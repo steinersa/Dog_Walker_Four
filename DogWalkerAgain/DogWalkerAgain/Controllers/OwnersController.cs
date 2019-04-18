@@ -13,7 +13,6 @@ namespace DogWalkerAgain.Controllers
     public class OwnersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        //private object _context;
 
         // GET: Owners
         public ActionResult Index()
@@ -63,10 +62,6 @@ namespace DogWalkerAgain.Controllers
             var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
             return View(ownerIs);
 
-            //var currentPerson = User.Identity.GetUserId();
-            //var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
-            //return View(currentUser);
-
         }
 
         // POST: Owners/Edit/5
@@ -84,28 +79,7 @@ namespace DogWalkerAgain.Controllers
                 return View(owner);
             
         }
-        //{
-        //    var ownerInDB = db.Owners.Single(m => m.Id == owner.Id);
-        //    ownerInDB.FirstName = owner.FirstName;
-        //    ownerInDB.LastName = owner.LastName;
-        //    ownerInDB.Street = owner.Street;
-        //    ownerInDB.City = owner.City;
-        //    ownerInDB.State = owner.State;
-        //    ownerInDB.Zip = owner.Zip;
-        //    //ownerInDB.Id = owner.Id;
-        //    ownerInDB.Owners = db.Owners.ToList();
-        //    db.SaveChanges();
-        //    return View(owner);
-        //}
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(owner).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(owner);
-        //}
+
 
         // GET: Owners/Delete/5
         public ActionResult Delete(int id)
@@ -132,15 +106,30 @@ namespace DogWalkerAgain.Controllers
             }
         }
 
-        public ActionResult Filter()
+        public ActionResult WalkerSearch(string zip, int? rating)
         {
-            return View();
+            var ratingList = new List<int?>();
+            IQueryable<int?> ratingGet =
+            from r in db.Walkers
+            orderby r.Rating
+            select r.Rating;
+            ratingList.AddRange(ratingGet.Distinct());
+            ViewBag.rating = new SelectList(ratingList);
+
+            var walkers = from x in db.Walkers
+                          select x;
+
+            if (rating.HasValue)
+            {
+                walkers = walkers.Where(d => d.Rating == rating);
+            }
+            if (!string.IsNullOrEmpty(zip))
+            {
+                walkers = walkers.Where(x => x.Zip.Contains(zip));
+            }
+
+            return View(walkers);
         }
 
-        [HttpPost]
-        public ActionResult Filter(string choice)
-        {
-            return View();
-        }
     }
 }

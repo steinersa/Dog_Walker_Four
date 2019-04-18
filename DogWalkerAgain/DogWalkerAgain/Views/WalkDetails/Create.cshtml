@@ -14,6 +14,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.WalkId)
 
     <div class="form-horizontal">
         <h4>WalkDetails</h4>
@@ -60,7 +62,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Owners")
 </div>
 
 @section Scripts {

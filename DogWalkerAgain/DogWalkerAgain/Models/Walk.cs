@@ -15,10 +15,10 @@ namespace DogWalkerAgain.Models
         [Display(Name = "Walker's Status")]
         public string WalkerApprovalStatus { get; set; }
 
-        [Display(Name = "Owners's Status")]
+        [Display(Name = "Owner's Status")]
         public string OwnersApprovalStatus { get; set; }
 
-        [Display(Name = "Walk's Status")]
+        [Display(Name = "Walk Complete?")]
         public bool WalkComplete { get; set; }
 
         [ForeignKey("Owner")]

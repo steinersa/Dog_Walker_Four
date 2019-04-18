@@ -208,6 +208,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Background.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -266,8 +267,6 @@
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
-    <Content Include="Views\Owners\FilterWalkers.cshtml" />
-    <Content Include="Views\Owners\Filtered.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
@@ -275,8 +274,8 @@
     <Content Include="Views\WalkDetails\Details.cshtml" />
     <Content Include="Views\Walks\Details.cshtml" />
     <Content Include="Views\Walks\Edit.cshtml" />
-    <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Map.cshtml" />
     <Content Include="Views\Walkers\DogDetails.cshtml" />
     <Content Include="Views\Walkers\Details.cshtml" />
     <Content Include="Web.config" />
@@ -286,6 +285,8 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Views\Walkers\DogSearch.cshtml" />
+    <Content Include="Views\Owners\WalkerSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
