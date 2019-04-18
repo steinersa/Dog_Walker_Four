@@ -23,15 +23,8 @@ namespace DogWalkerAgain.Controllers
         // GET: WalkDetails/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WalkDetails walkDetails = db.WalkDetails.Find(id);
-            if (walkDetails == null)
-            {
-                return HttpNotFound();
-            }
+            //do stuff to id passed in... currently the walk id... need walkdetails id
+            var walkDetails = db.WalkDetails.Where(x => id == x.WalkId).FirstOrDefault();
             return View(walkDetails);
         }
 
@@ -49,8 +42,9 @@ namespace DogWalkerAgain.Controllers
         {
             var userResult = User.Identity.GetUserId();
             var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
-            var currentWalk = db.Walks.Where(x => currentUser.Id == x.OwnerId).FirstOrDefault();
-            walkDetails.WalkId = currentWalk.Id;
+            var walksByUser = db.Walks.Where(x => currentUser.Id == x.OwnerId).ToList();
+            var lastWalk = walksByUser.LastOrDefault();
+            walkDetails.WalkId = lastWalk.Id;
             if (ModelState.IsValid)
             {
                 db.WalkDetails.Add(walkDetails);

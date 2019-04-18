@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace DogWalkerAgain.Controllers
 {
@@ -37,7 +38,7 @@ namespace DogWalkerAgain.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted,OwnerId,WalkerId")] Walk walk)
+        public ActionResult Create([Bind(Include = "Id,WalkerApprovalStatus,OwnersApprovalStatus,WalkCompleted,OwnerId,WalkerId")] Walk walk)
         {
             var userResult = User.Identity.GetUserId();
             var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
@@ -62,7 +63,7 @@ namespace DogWalkerAgain.Controllers
         // POST: Walks/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnerApprovalStatus,WalkCompleted")] Walk walk)
+        public ActionResult Edit([Bind(Include = "Id,OwnerId,WalkId,WalkerApprovalStatus,OwnersApprovalStatus,WalkComplete")] Walk walk)
         {
             if (ModelState.IsValid)
             {
