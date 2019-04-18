@@ -163,5 +163,20 @@ namespace DogWalker.Controllers
             return View(walkOpportunities);
         }
 
+        public ActionResult WalkSchedule()
+        {
+            List<WalkDetails> myDetails = new List<WalkDetails>();
+
+            var userResult = User.Identity.GetUserId();
+            var currentWalker = db.Walkers.Where(x => userResult == x.ApplicationId).FirstOrDefault();
+            var myWalks = db.Walks.Where(x => currentWalker.Id == x.WalkerId).ToList();
+            foreach (Walk walk in myWalks)
+            {
+                var detailsOfSpecificWalk = db.WalkDetails.Where(x => walk.Id == x.WalkId && walk.OwnersApprovalStatus == "approved").SingleOrDefault();
+                myDetails.Add(detailsOfSpecificWalk);
+            }
+            return View(myDetails);
+        }
+
     }
 }
