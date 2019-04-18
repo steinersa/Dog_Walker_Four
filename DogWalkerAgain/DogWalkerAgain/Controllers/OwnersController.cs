@@ -13,6 +13,7 @@ namespace DogWalkerAgain.Controllers
     public class OwnersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private object _context;
 
         // GET: Owners
         public ActionResult Index()
@@ -30,12 +31,6 @@ namespace DogWalkerAgain.Controllers
             var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
             return View(currentUser);
         }
-
-        //var userResult = User.Identity.GetUserId();
-        //var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
-        //dog.OwnerId = currentUser.Id;
-
-
 
         // GET: Owners/Create
         public ActionResult Create()
@@ -60,35 +55,39 @@ namespace DogWalkerAgain.Controllers
             return View(owner);
         }
 
-        // GET: Owners/Edit/5
+
+
+        // GET: Owners/Edit/ 
         public ActionResult Edit(int? id)
         {
             var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
             return View(ownerIs);
+
         }
 
         // POST: Owners/Edit/5
         [HttpPost]
-        public ActionResult Edit(Owner owner)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id, FirstName, LastName, Street, City, State, Zip, ApplicationId")] Owner owner)
         {
-            try
-            {
-                db.Entry(owner).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
+                if (ModelState.IsValid)
+                {
+                    db.Entry(owner).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(owner);
+            
         }
+
 
         // GET: Owners/Delete/5
         public ActionResult Delete(int id)
-        {
-            var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
-            return View(ownerIs);
-        }
+            {
+                var ownerIs = db.Owners.Where(w => w.Id == id).FirstOrDefault();
+                return View(ownerIs);
+            }
 
         // POST: Owners/Delete/5
         [HttpPost]

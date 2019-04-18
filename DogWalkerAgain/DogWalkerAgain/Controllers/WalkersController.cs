@@ -32,12 +32,17 @@ namespace DogWalker.Controllers
         }
 
         //Search dogs
-        public async Task<ActionResult> DogSearch(string dogBreed, string searchString)
+        public ActionResult DogSearch(string dogBreed, string searchString)
         {
+            var BreedList = new List<string>();
+
             //use LINQ to get list of dog breeds.
             IQueryable<string> BreedGet = from d in db.Dogs
                                           orderby d.Breed
                                           select d.Breed;
+
+            BreedList.AddRange(BreedGet.Distinct());
+            ViewBag.dogBreed = new SelectList(BreedList);
 
             var dogs = from d in db.Dogs
                        select d;
@@ -53,29 +58,37 @@ namespace DogWalker.Controllers
                 dogs = dogs.Where(d => d.Breed == dogBreed);
             }
 
-            var dogBreedViewModel = new DogBreedViewModel
-            {
-                Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
-                Dogs = await dogs.ToListAsync()
-            };
+            //{
+            //    Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
+            //    Dogs = await dogs.ToListAsync()
+            //};
 
-            return View(dogBreedViewModel);
+            return View(dogs);
+        }
+
+        //GET: Details of dog picked
+        public ActionResult DogDetails(int id)
+        {
+            if(id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Dog dog = db.Dogs.Find(id);
+            if (dog == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dog);
         }
 
 
         // GET: Walkers/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Walker walker = db.Walkers.Find(id);
-            if (walker == null)
-            {
-                return HttpNotFound();
-            }
-            return View(walker);
+            var currentPerson = User.Identity.GetUserId();
+            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            return View(currentUser);
         }
 
         // GET: Walkers/Create

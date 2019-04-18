@@ -221,6 +221,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\paw.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -279,12 +280,16 @@
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
+    <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\WalkDetails\Details.cshtml" />
     <Content Include="Views\Walks\Details.cshtml" />
     <Content Include="Views\Walks\Edit.cshtml" />
-    <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
     <Content Include="Views\WalkDetails\Map.cshtml" />
+    <Content Include="Views\Walkers\DogDetails.cshtml" />
+    <Content Include="Views\Walkers\Details.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Walkers\DogSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
