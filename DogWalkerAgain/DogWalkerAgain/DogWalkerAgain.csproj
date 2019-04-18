@@ -276,6 +276,7 @@
     <Content Include="Views\Walks\Details.cshtml" />
     <Content Include="Views\Walks\Edit.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Map.cshtml" />
     <Content Include="Views\Walkers\DogDetails.cshtml" />
     <Content Include="Views\Walkers\Details.cshtml" />
     <Content Include="Views\Walkers\DogSearch.cshtml" />
