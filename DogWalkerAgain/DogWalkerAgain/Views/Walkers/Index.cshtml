@@ -35,6 +35,27 @@
     <div id="showWeatherForecast"></div>
 
     <script type="text/javascript">
+
+        var addressesArray = [
+            'Address Str.No, Postal Area/city',
+            //follow this structure
+        ]
+        //loop all the addresses and call a marker for each one
+        for (var x = 0; x < addressesArray.length; x++) {
+            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + addressesArray[x] + '&sensor=false', null, function (data) {
+                var p = data.results[0].geometry.location
+                var latlng = new google.maps.LatLng(p.lat, p.lng);
+                var aMarker = new google.maps.Marker({
+                    position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations. 
+                    map: map
+
+                });
+
+            }
+
+
+
+
         $(document).ready(function () {
             console.log("TEST");
             $("#getWeatherForecast").click(function(){
@@ -66,7 +87,10 @@
                 });
             });
         });
-    
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        var directionsService = new google.maps.DirectionsService(); 
+
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
             var icon = {
@@ -77,6 +101,21 @@
                 zoom: 10,
                 center: location
             });
+
+            //directionsDisplay.setMap(map);
+            //function calculateRoute() {
+            //    var request = {
+            //        origin: Milwaukee,
+            //        destination: Oshkosh,
+            //        travelMode: 'DRIVING'
+            //    };
+            
+
+            //directionsService route(request, function (result, status) {
+            //    if (status == 'OK') {
+            //        directionsDisplay.setDirections(result);
+            //    }
+            //});
             var marker = new google.maps.Marker({
                 position: location,
                 animation: google.maps.Animation.BOUNCE,
@@ -90,7 +129,7 @@
 
         
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=KEYHERE&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
 
        
     </script>

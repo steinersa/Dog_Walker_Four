@@ -22,13 +22,13 @@ namespace DogWalker.Controllers
         public ActionResult Index()
         {
             
-            ApplicationDbContext context = new ApplicationDbContext();
-
-            //ViewBag.map = APIKeys.APIKey;
-
-            var incompleteWalks = context.Walks.Where(x => x.WalkComplete == false).ToList();
+            var incompleteWalks = db.Walks.Include(w => w.Owner.Street)
+                .Include(w => w.Owner.State)
+                .Include(w => w.Owner.Zip)
+                .Include(w => w.Owner.City)
+                .Where(x => x.WalkComplete == false).ToList();
             
-            return View();
+            return View(incompleteWalks);
         }
 
         //Search dogs
