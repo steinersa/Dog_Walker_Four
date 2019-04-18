@@ -82,7 +82,7 @@ namespace DogWalker.Controllers
         public ActionResult Details()
         {
             var currentPerson = User.Identity.GetUserId();
-            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            var currentUser = db.Walkers.Where(x => x.ApplicationId == currentPerson).FirstOrDefault();
             return View(currentUser);
         }
 
@@ -97,6 +97,11 @@ namespace DogWalker.Controllers
         [HttpPost]
         public ActionResult Create(Walker walker)
         {
+            if (walker.ApplicationId == null)
+            {
+                var currentUser = User.Identity.GetUserId();
+                walker.ApplicationId = currentUser;
+            }
             try
             {
                 db.Walkers.Add(walker);
