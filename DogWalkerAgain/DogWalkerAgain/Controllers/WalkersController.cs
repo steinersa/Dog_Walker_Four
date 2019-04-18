@@ -58,11 +58,6 @@ namespace DogWalker.Controllers
                 dogs = dogs.Where(d => d.Breed == dogBreed);
             }
 
-            //{
-            //    Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
-            //    Dogs = await dogs.ToListAsync()
-            //};
-
             return View(dogs);
         }
 
@@ -87,7 +82,7 @@ namespace DogWalker.Controllers
         public ActionResult Details()
         {
             var currentPerson = User.Identity.GetUserId();
-            var currentUser = db.Owners.Where(x => currentPerson == x.ApplicationId).FirstOrDefault();
+            var currentUser = db.Walkers.Where(x => x.ApplicationId == currentPerson).FirstOrDefault();
             return View(currentUser);
         }
 
