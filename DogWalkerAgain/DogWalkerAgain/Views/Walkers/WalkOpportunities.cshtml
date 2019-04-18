@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DogWalkerAgain.Models.Walk>
+
+@{
+    ViewBag.Title = "WalkOpportunities";
+}
+
+<h2>WalkOpportunities</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Walker.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WalkerApprovalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnersApprovalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WalkComplete)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Walker.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WalkerApprovalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnersApprovalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WalkComplete)
+        </td>
+        <td>
+            @Html.ActionLink("View Walk Details", "Details", "WalkDetails", new { id = item.Id }, null)  |
+            @Html.ActionLink("Request to take Walk", "Edit", "Walks", new { id = item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

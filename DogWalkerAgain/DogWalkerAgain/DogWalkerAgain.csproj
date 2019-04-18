@@ -289,6 +289,9 @@
     <Content Include="Web.config" />
     <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Owners\WalkerSearch.cshtml" />
+    <Content Include="Views\Walkers\WalkOpportunities.cshtml" />
+    <Content Include="Views\Walks\OwnerEdit.cshtml" />
+    <Content Include="Views\Walks\WalkerEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
