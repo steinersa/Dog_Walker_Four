@@ -267,8 +267,6 @@
     <Content Include="Views\Walks\Create.cshtml" />
     <Content Include="Views\Walkers\Create.cshtml" />
     <Content Include="Views\WalkDetails\Create.cshtml" />
-    <Content Include="Views\Owners\FilterWalkers.cshtml" />
-    <Content Include="Views\Owners\Filtered.cshtml" />
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Delete.cshtml" />
     <Content Include="Views\Walkers\Index.cshtml" />
@@ -281,13 +279,7 @@
     <Content Include="Views\Walkers\DogDetails.cshtml" />
     <Content Include="Views\Walkers\Details.cshtml" />
     <Content Include="Views\Walkers\DogSearch.cshtml" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+    <Content Include="Views\Owners\WalkerSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
