@@ -22,6 +22,8 @@
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.OwnerId);
     @Html.HiddenFor(model => model.WalkerId);
+    @Html.HiddenFor(model => model.OwnersApprovalStatus);
+    @Html.HiddenFor(model => model.WalkComplete);
 
     <div class="form-group">
         @Html.LabelFor(model => model.WalkerApprovalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,28 +34,11 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.OwnersApprovalStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.OwnersApprovalStatus, new SelectList(new[] { "posted", "approved", "denied" }, Model.OwnersApprovalStatus))
-            @Html.ValidationMessageFor(model => model.OwnersApprovalStatus, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.WalkComplete, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.WalkComplete)
-                @Html.ValidationMessageFor(model => model.WalkComplete, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Save" formaction="@Url.Action("WalkerEdit", "Walks")" class="btn btn-default" />
         </div>
     </div>
+
 </div>
 }
 

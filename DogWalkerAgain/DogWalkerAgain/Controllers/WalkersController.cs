@@ -95,23 +95,18 @@ namespace DogWalker.Controllers
 
         // POST: Walkers/Create
         [HttpPost]
-        public ActionResult Create(Walker walker)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip,Rating")] Walker walker)
         {
-            if (walker.ApplicationId == null)
-            {
-                var currentUser = User.Identity.GetUserId();
-                walker.ApplicationId = currentUser;
-            }
-            try
+            walker.ApplicationId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
             {
                 db.Walkers.Add(walker);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(walker);
         }
 
         // GET: Walkers/Edit/5
@@ -161,5 +156,12 @@ namespace DogWalker.Controllers
                 return View();
             }
         }
+
+        public ActionResult WalkOpportunities()
+        {
+            var walkOpportunities = db.Walks.Where(x => x.WalkComplete == false && x.OwnersApprovalStatus != "approved" && x.WalkerApprovalStatus != "interested").ToList();
+            return View(walkOpportunities);
+        }
+
     }
 }
