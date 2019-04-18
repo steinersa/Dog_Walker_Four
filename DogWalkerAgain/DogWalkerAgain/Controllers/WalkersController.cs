@@ -58,11 +58,6 @@ namespace DogWalker.Controllers
                 dogs = dogs.Where(d => d.Breed == dogBreed);
             }
 
-            //{
-            //    Breeds = new SelectList(await BreedGet.Distinct().ToListAsync()),
-            //    Dogs = await dogs.ToListAsync()
-            //};
-
             return View(dogs);
         }
 
