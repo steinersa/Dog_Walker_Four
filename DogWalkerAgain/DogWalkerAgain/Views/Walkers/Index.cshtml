@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <title></title>
     <style>
         * {
@@ -23,14 +23,48 @@
     </style>
 </head>
 <body>
-    
+
     <div id="map">
 
     </div>
 
+    <input id="city">
+    <button id="getWeatherForecast">Get Weather</button>
+    <div id="showWeatherForecast"></div>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            console.log("TEST");
+            $("#getWeatherForecast").click(function(){
+                var city = $("#city").val();
+                var key = '';
+                console.log("CLICKED");
+                $.ajax({
+                    url: 'http://api.openweathermap.org/data/2.5/weather',
+                    dataType: 'json',
+                    type: 'GET',
+                    data: { q: city, appid: key, units: 'metric' },
+              
 
-    <script>
+                    success: function (data) {
+                        console.log("YAY!");
+                        var wf = '';
+                        $.each(data.weather, function (index, val) {
+                            wf += '<p><b>' + data.name + "</b><img src=" + val.icon + 
+                              "  .png ></p > " +
+                            data.main.temp + '&deg;C ' + ' | ' + val.main + ", " +
+                            val.description 
+                        
+                        });
+                        $("#showWeatherForecast").html(wf);
+                    },
+                    error: function () {
+                        console.log("Nooo...");
+                    }
+                });
+            });
+        });
+    
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
             var icon = {
@@ -47,19 +81,21 @@
                 map: map,
                 icon: icon
             });
-            console.log('marker', marker);
-            setMarkers(map);
+           
+
+
         }
 
-        function setMarkers(map) {
-            var image = {
-                url: 'https://www.google.com/search?q=dog+paw+png+icon&rlz=1C1CHBF_enUS838US838&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjjgaiRsdfhAhUlTd8KHcnCDk4Q_AUIDigB&biw=1920&bih=937#imgrc=jvYQgLGgMPEeJM:'
-            };
-        }
-
+        
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=KEYHERE&callback=initMap">
 
+       
+    </script>
+    
+    
+
+   
 
 </body>
 </html>

@@ -13,7 +13,7 @@ namespace DogWalkerAgain.Controllers
     public class OwnersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private object _context;
+        //private object _context;
 
         // GET: Owners
         public ActionResult Index()
