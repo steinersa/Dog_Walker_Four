@@ -1,4 +1,8 @@
-﻿@model IEnumerable<DogWalkerAgain.Models.Walker>
+﻿@{
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+@model IEnumerable<DogWalkerAgain.Models.Walker>
 
 @{
     ViewBag.Title = "WalkerSearch";
@@ -14,8 +18,8 @@
         Zip Code: @Html.TextBox("zip") <br />
         <input type="submit" value="Filter" />
     </p>
-    }
-</p>
+}
+    </p>
 
     <table class="table">
         <tr>
