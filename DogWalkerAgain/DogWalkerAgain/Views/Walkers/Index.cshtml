@@ -64,7 +64,10 @@
                 });
             });
         });
-    
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        var directionsService = new google.maps.DirectionsService(); 
+
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
             var icon = {
@@ -75,6 +78,21 @@
                 zoom: 10,
                 center: location
             });
+
+            //directionsDisplay.setMap(map);
+            //function calculateRoute() {
+            //    var request = {
+            //        origin: Milwaukee,
+            //        destination: Oshkosh,
+            //        travelMode: 'DRIVING'
+            //    };
+            
+
+            //directionsService route(request, function (result, status) {
+            //    if (status == 'OK') {
+            //        directionsDisplay.setDirections(result);
+            //    }
+            //});
             var marker = new google.maps.Marker({
                 position: location,
                 animation: google.maps.Animation.BOUNCE,
@@ -88,7 +106,7 @@
 
         
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=KEYHERE&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
 
        
     </script>
