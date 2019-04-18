@@ -168,7 +168,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -285,6 +284,7 @@
     <Content Include="Views\Walks\Edit.cshtml" />
     <Content Include="Views\Walkers\DogSearch.cshtml" />
     <Content Include="Views\Walks\Index.cshtml" />
+    <Content Include="Views\WalkDetails\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
