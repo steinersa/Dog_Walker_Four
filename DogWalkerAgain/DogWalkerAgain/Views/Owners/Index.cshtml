@@ -37,8 +37,9 @@
                 @Html.DisplayFor(modelItem => item.WalkComplete)
             </td>
             <td>
-                @Html.ActionLink("Walk Details", "Details", "WalkDetails", new { id = item.Id }, null) |
-                @Html.ActionLink("Check Approval Info", "Details", "Walks", new { id = item.Id }, null)
+                @Html.ActionLink("Walk Details", "Details", "WalkDetails", new { id = item.Id }, null)  |
+                @Html.ActionLink("Walker Information", "Details", "Walkers", new { id = item.Id }, null)  |
+                @Html.ActionLink("Update Approval Info", "Details", "Walks", new { id = item.Id }, null)
                 @*@Html.ActionLink("Delete", "Delete", "Walks", new { id = item.Id })*@
             </td>
         </tr>
