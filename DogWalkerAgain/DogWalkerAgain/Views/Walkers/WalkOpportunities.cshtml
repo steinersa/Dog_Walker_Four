@@ -1,4 +1,8 @@
-﻿@model IEnumerable<DogWalkerAgain.Models.Walk>
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWalker.cshtml";
+}
+
+@model IEnumerable<DogWalkerAgain.Models.Walk>
 
 @{
     ViewBag.Title = "WalkOpportunities";
@@ -26,28 +30,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Walker.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WalkerApprovalStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnersApprovalStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WalkComplete)
-        </td>
-        <td>
-            @Html.ActionLink("View Walk Details", "Details", "WalkDetails", new { id = item.Id }, null)  |
-            @Html.ActionLink("Request to take Walk", "Edit", "Walks", new { id = item.Id }, null)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Walker.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WalkerApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnersApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WalkComplete)
+            </td>
+            <td>
+                @Html.ActionLink("View Walk Details", "Details", "WalkDetails", new { id = item.Id }, null)  |
+                @Html.ActionLink("Request to take Walk", "Edit", "Walks", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
 
 </table>
