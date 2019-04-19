@@ -60,7 +60,20 @@ namespace DogWalker.Controllers
         //GET: Details of dog picked
         public ActionResult DogDetails(int id)
         {
-            if(id == 0)
+
+            var rate = new SelectList(new[]
+            {
+                new { ID = "1", Name = "1" },
+                new { ID = "2", Name = "2" },
+                new { ID = "3", Name = "3" },
+                new { ID = "3", Name = "3" },
+                new { ID = "3", Name = "3" },
+            },
+            "ID", "Name", 1);
+
+            ViewData["rate"] = rate;
+
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -95,6 +108,7 @@ namespace DogWalker.Controllers
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Street,City,State,Zip,Rating")] Walker walker)
         {
             walker.ApplicationId = User.Identity.GetUserId();
+            walker.Rating = 0;
             if (ModelState.IsValid)
             {
                 db.Walkers.Add(walker);

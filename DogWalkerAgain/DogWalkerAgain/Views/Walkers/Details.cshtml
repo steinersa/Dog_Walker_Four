@@ -61,11 +61,23 @@
         <dd>
             @Html.DisplayFor(model => model.Zip)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt>
+            Rate This Walker! 
+        </dt>
+        <dd>
+            @Html.DropDownListFor(model => model.Rating, new SelectList(new[] { 1, 2, 3, 4, 5 }, Model.Rating))
+            @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+        </dd>
 
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Home", "Index")
 </p>
