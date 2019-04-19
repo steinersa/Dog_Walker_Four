@@ -2,8 +2,7 @@
     Layout = "~/Views/Shared/_LayoutWalker.cshtml";
 }
 
-
-@model DogWalkerAgain.Models.Walker
+@model IEnumerable<DogWalkerAgain.Models.Walk>
 
 
 <!DOCTYPE html>
@@ -26,6 +25,7 @@
 </head>
 <body>
 
+
     <div id="map">
 
     </div>
@@ -36,24 +36,57 @@
 
     <script type="text/javascript">
 
-        var addressesArray = [
-            'Address Str.No, Postal Area/city',
-            //follow this structure
-        ]
-        //loop all the addresses and call a marker for each one
-        for (var x = 0; x < addressesArray.length; x++) {
-            $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + addressesArray[x] + '&sensor=false', null, function (data) {
-                var p = data.results[0].geometry.location
-                var latlng = new google.maps.LatLng(p.lat, p.lng);
-                var aMarker = new google.maps.Marker({
-                    position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations. 
-                    map: map
+        //var addressesArray = [
+        //    'Address Str.No, Postal Area/city',
+        //    //follow this structure
+        //]
+        ////loop all the addresses and call a marker for each one
+        //for (var x = 0; x < addressesArray.length; x++) {
+        //    $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + addressesArray[x] + '&sensor=false', null, function (data) {
+        //        var p = data.results[0].geometry.location
+        //        var latlng = new google.maps.LatLng(p.lat, p.lng);
+        //        var aMarker = new google.maps.Marker({
+        //            position: latlng, //it will place marker based on the addresses, which they will be translated as geolocations. 
+        //            map: map
 
-                });
+        //        });
 
+        //    }
+        var markers = [
+            ['Waukesha', 43.011677, -88.231483],
+            ['Sussex', 45.723438, -65.510872],
+            ['UWM', 43.077980, -87.881813],
+            ['Marquette', 43.038223, -87.929756],
+            ['Menomonee Falls', 43.178871, -88.117249],
+            ['Oak Creek', 42.885151, -87.908340]
+        ];
+
+        //var infoWindowContent = [
+        //    [<div class="info_content"> +
+        //        '<h3>George</h3>' +
+        //        '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' + '</div>],
+        //    [<div class="info_content"> +
+        //        '<h3>Brooklyn Public Library</h3>' +
+        //        '<p>The Brooklyn Public Library (BPL) is the public library system of the borough of Brooklyn, in New York City.</p>' +
+        //        </div>],
+        //    ['<div class="info_content">' +
+        //        '<h3>Prospect Park Zoo</h3>' +
+        //        '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
+        //        '</div>']
+        //    ['<div class="info_content">' +
+        //    '<h3>Prospect Park Zoo</h3>' +
+        //    '<p>The Prospect Park Zoo is a 12-acre (4.9 ha) zoo located off Flatbush Avenue on the eastern side of Prospect Park, Brooklyn, New York City.</p>' +
+        //    '</div>']
+        //];
+
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
             }
-
-
+        })(marker, i));
 
 
         $(document).ready(function () {
@@ -87,9 +120,9 @@
                 });
             });
         });
-        var directionsDisplay = new google.maps.DirectionsRenderer();
+        //var directionsDisplay = new google.maps.DirectionsRenderer();
 
-        var directionsService = new google.maps.DirectionsService(); 
+        //var directionsService = new google.maps.DirectionsService(); 
 
         function initMap() {
             var location = { lat: 43.03, lng: -87.906 };
@@ -109,23 +142,34 @@
             //        destination: Oshkosh,
             //        travelMode: 'DRIVING'
             //    };
-            
+
 
             //directionsService route(request, function (result, status) {
             //    if (status == 'OK') {
             //        directionsDisplay.setDirections(result);
             //    }
             //});
-            var marker = new google.maps.Marker({
-                position: location,
-                animation: google.maps.Animation.BOUNCE,
-                map: map,
-                icon: icon
-            });
-           
+            //var marker = new google.maps.Marker({
+            //    position: location,
+            //    animation: google.maps.Animation.BOUNCE,
+            //    map: map,
+            //    icon: icon
+            //});
 
-
+            for (i = 0; i < markers.length; i++) {
+                console.log("Marker Placement initiated");
+                var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+              
+                marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    
+                    icon: icon,
+                    animation: google.maps.Animation.BOUNCE
+                });
+            }
         }
+        
 
         
     </script>

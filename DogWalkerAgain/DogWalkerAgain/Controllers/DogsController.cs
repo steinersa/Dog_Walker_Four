@@ -53,6 +53,7 @@ namespace DogWalker.Controllers
             var userResult = User.Identity.GetUserId();
             var currentUser = db.Owners.Where(x => userResult == x.ApplicationId).FirstOrDefault();
             dog.OwnerId = currentUser.Id;
+            dog.Rating = 0;
             if (ModelState.IsValid)
             {
                 db.Dogs.Add(dog);

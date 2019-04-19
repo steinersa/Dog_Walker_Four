@@ -1583,10 +1583,10 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    background-color: #d2f0cb;
 }
 @media (min-width: 768px) {
   .container {
@@ -1601,6 +1601,7 @@ pre code {
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+
   }
 }
 .container-fluid {
@@ -1608,6 +1609,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  background-color: white;
 }
 .row {
   margin-right: -15px;
@@ -4494,19 +4496,19 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-    background-color: #9EDF8F;
-    border-color: #e7e7e7;
+    background-color: #d2f0cb;
+    border-color: #d2f0cb;
 }
-.navbar-default .navbar-brand {
-  color: #777;
-}
+    .navbar-default .navbar-brand {
+        color: #d2f0cb;
+    }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
   color: #5e5e5e;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
-  color: #777;
+  color: black;
 }
 .navbar-default .navbar-nav > li > a {
   color: #777;
@@ -4590,8 +4592,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
+    background-color: #d2f0cb;
+    border-color: #d2f0cb;
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
@@ -4602,10 +4604,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: black;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: black;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -4961,7 +4963,7 @@ a.badge:focus {
     padding-bottom: 30px;
     margin-bottom: 30px;
     color: #000;
-    background-color: #9edf8f;
+    background-color: #d2f0cb;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4973,15 +4975,17 @@ a.badge:focus {
   font-weight: 200;
 }
     .jumbotron > hr {
-        background-color: #9EDF8F;
+        background-color: #d2f0cb;
     }
+
 .container .jumbotron,
 .container-fluid .jumbotron {
     padding-right: 15px;
     padding-left: 15px;
     border-radius: 6px;
-    background-color: #9EDF8F;
+    background-color: #d2f0cb;
 }
+
 .jumbotron .container {
   max-width: 100%;
 }
