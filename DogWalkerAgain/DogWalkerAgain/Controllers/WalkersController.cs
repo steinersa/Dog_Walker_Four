@@ -22,11 +22,7 @@ namespace DogWalker.Controllers
         public ActionResult Index()
         {
             
-            var incompleteWalks = db.Walks.Include(w => w.Owner.Street)
-                .Include(w => w.Owner.State)
-                .Include(w => w.Owner.Zip)
-                .Include(w => w.Owner.City)
-                .Where(x => x.WalkComplete == false).ToList();
+            var incompleteWalks = db.Walks.Where(x => x.WalkComplete == false).ToList();
             
             return View(incompleteWalks);
         }
