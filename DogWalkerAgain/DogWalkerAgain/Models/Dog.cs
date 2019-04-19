@@ -38,7 +38,7 @@ namespace DogWalkerAgain.Models
         public string Size { get; set; }
 
         [Required]
-        [Display(Name = "Status")]
+        [Display(Name = "Spayed/Neutered")]
         public bool SpayedNeutered { get; set; }
 
         [Display(Name = "Rating")]
